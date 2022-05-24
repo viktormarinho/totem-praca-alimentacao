@@ -94,7 +94,7 @@ header{
     height: calc(60vh - 20px);
     padding: 20px;
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
     overflow-y: scroll;
     gap: 8px;
 }
