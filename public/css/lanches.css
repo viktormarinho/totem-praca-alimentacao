@@ -1,0 +1,151 @@
+@import url("https://fonts.googleapis.com/css2?family=Maven+Pro:wght@400;500;600;700;800;900&display=swap");
+* {
+  font-family: "Maven Pro", sans-serif;
+  font-weight: 800;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+}
+
+header {
+  display: flex;
+  gap: 25vw;
+  align-items: center;
+  padding: 10px;
+  max-height: 100px;
+}
+header #logo {
+  height: 75px;
+  margin-left: -10vw;
+}
+header a {
+  background-color: whitesmoke;
+  width: 80px;
+  height: 80px;
+  border-radius: 10px;
+  font-size: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: black;
+}
+header h1 {
+  margin: 0;
+  padding: 0;
+  font-size: 40px;
+  flex-shrink: 0;
+  margin-left: -20vw;
+}
+
+#menu {
+  background-color: white;
+  width: 18vw;
+  border-radius: 0px 25px 25px 0px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+#menu ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-left: 0;
+}
+#menu ul :first-child {
+  border-top-right-radius: 20px;
+}
+#menu ul :last-child {
+  border-bottom-right-radius: 20px;
+}
+#menu i {
+  margin-bottom: -20px;
+  font-size: 30px;
+}
+#menu li {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: flex-end;
+  background-color: rgb(255, 184, 51);
+  width: 15vw;
+  height: 100px;
+}
+#menu .selected {
+  background-color: orange;
+  padding-left: 30px;
+  border-bottom-right-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+.compras {
+  margin-top: 3vh;
+  display: flex;
+  justify-content: space-between;
+}
+
+#lanches {
+  background-color: whitesmoke;
+  margin-right: 2.5vw;
+  border-radius: 10px;
+  width: calc(70vw - 20px);
+  height: calc(60vh - 20px);
+  padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  overflow-y: scroll;
+  gap: 8px;
+}
+
+.lanche {
+  background-color: rgb(230, 230, 230);
+  border-radius: 10px;
+  height: 140px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.lanche div {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  text-align: center;
+  justify-content: center;
+}
+.lanche div h4, .lanche div h5 {
+  padding: 0;
+  margin: 0;
+}
+.lanche div i {
+  font-size: 40px;
+  color: green;
+}
+.lanche div footer {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.lanche div footer h4 {
+  font-size: 22px;
+  font-weight: 500;
+}
+.lanche div footer h4 i {
+  font-size: 22px;
+}
+.lanche img {
+  height: 110px;
+}
+
+.carrinho {
+  margin-top: 16px;
+  width: 100vw;
+  background-color: whitesmoke;
+  height: 19.8vh;
+}
+
+/*# sourceMappingURL=lanches.css.map */

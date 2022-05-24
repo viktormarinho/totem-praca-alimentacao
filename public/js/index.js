@@ -10,7 +10,7 @@ import { firebaseConfig } from "./config.js";
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const db = getFirestore();
+const db = getFirestore(app);
 const RestaurantesQuerySnapshot = await getDocs(collection(db, "restaurantes"));
 
 const section = document.getElementById('restaurantes');
