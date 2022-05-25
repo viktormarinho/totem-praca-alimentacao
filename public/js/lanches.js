@@ -71,68 +71,68 @@ function gerarLanches(){
 }
 
 function gerarBebidas(){
-    let lanches = cardapio['bebidas'];
-    for (let lancheKey in lanches){
-        let lanche = lanches[lancheKey];
+    let bebidas = cardapio['bebidas'];
+    for (let bebidasKey in bebidas){
+        let bebida = bebidas[bebidasKey];
         
-        let divLanche = document.createElement('div');
-        divLanche.classList.add('lanche');
+        let divBebida = document.createElement('div');
+        divBebida.classList.add('lanche');
 
-        let imagemLanche = document.createElement('img');
-        imagemLanche.src = lanche.imagem;
+        let imagemBebida = document.createElement('img');
+        imagemBebida.src = bebida.imagem;
 
         let divInterior = document.createElement('div');
-        let nomeLanche = document.createElement('h4');
-        nomeLanche.textContent = lanche.nome;
+        let nomeBebida = document.createElement('h4');
+        nomeBebida.textContent = bebida.nome;
 
         let footerzin = document.createElement('footer');
         let h4preco = document.createElement('h4');
 
-        h4preco.innerHTML = `<i class="fa-solid fa-dollar-sign"></i> ${lanche.valor}`
+        h4preco.innerHTML = `<i class="fa-solid fa-dollar-sign"></i> ${bebida.valor}`
 
         footerzin.appendChild(h4preco);
         footerzin.innerHTML = footerzin.innerHTML + '<i class="fa-solid fa-square-plus"></i>'
 
-        divInterior.appendChild(nomeLanche);
+        divInterior.appendChild(nomeBebida);
         divInterior.appendChild(footerzin);
 
-        divLanche.appendChild(imagemLanche);
-        divLanche.appendChild(divInterior);
+        divBebida.appendChild(imagemBebida);
+        divBebida.appendChild(divInterior);
 
-        divLanches.appendChild(divLanche);
+        divLanches.appendChild(divBebida);
     }
 }
 
 function gerarSobremesas(){
-    let lanches = cardapio['sobremesas'];
-    for (let lancheKey in lanches){
-        let lanche = lanches[lancheKey];
+    let sobremesas = cardapio['sobremesas'];
+    for (let sobremesaKey in sobremesas){
+        let sobremesa = sobremesas[sobremesaKey];
         
-        let divLanche = document.createElement('div');
-        divLanche.classList.add('lanche');
+        let divSobremesa = document.createElement('div');
+        divSobremesa.classList.add('lanche');
 
-        let imagemLanche = document.createElement('img');
-        imagemLanche.src = lanche.imagem;
+        let imagemSobremesa = document.createElement('img');
+        imagemSobremesa.src = sobremesa.imagem;
 
         let divInterior = document.createElement('div');
-        let nomeLanche = document.createElement('h4');
-        nomeLanche.textContent = lanche.nome;
+        let nomeSobremesa = document.createElement('h4');
+        nomeSobremesa.textContent = sobremesa.nome;
 
         let footerzin = document.createElement('footer');
         let h4preco = document.createElement('h4');
 
-        h4preco.innerHTML = `<i class="fa-solid fa-dollar-sign"></i> ${lanche.valor}`
+        h4preco.innerHTML = `<i class="fa-solid fa-dollar-sign"></i> ${sobremesa.valor}`
 
         footerzin.appendChild(h4preco);
         footerzin.innerHTML = footerzin.innerHTML + '<i class="fa-solid fa-square-plus"></i>'
 
-        divInterior.appendChild(nomeLanche);
+        divInterior.appendChild(nomeSobremesa);
         divInterior.appendChild(footerzin);
 
-        divLanche.appendChild(imagemLanche);
-        divLanche.appendChild(divInterior);
+        divSobremesa.appendChild(imagemSobremesa);
+        divSobremesa.appendChild(divInterior);
 
-        divLanches.appendChild(divLanche);
+        divLanches.appendChild(divSobremesa);
     }
 }
 
