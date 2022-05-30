@@ -35,6 +35,7 @@ menuItems.forEach((item) => {
 });
 
 const divLanches = document.getElementById('lanches');
+const divCarrinho = document.querySelector('.carrinhoLanches');
 const cardapio = res.data().cardapio;
 
 function gerarLanches(){
@@ -55,7 +56,7 @@ function gerarLanches(){
         let footerzin = document.createElement('footer');
         let h4preco = document.createElement('h4');
 
-        h4preco.innerHTML = `<i class="fa-solid fa-dollar-sign"></i> ${lanche.valor}`
+        h4preco.innerHTML = `<i class="fa-solid fa-dollar-sign"></i> ${lanche.valor.toFixed(2)}`
 
         footerzin.appendChild(h4preco);
         footerzin.innerHTML = footerzin.innerHTML + '<i class="fa-solid fa-square-plus"></i>'
@@ -68,6 +69,7 @@ function gerarLanches(){
 
         divLanches.appendChild(divLanche);
     }
+    gerarBotoes();
 }
 
 function gerarBebidas(){
@@ -88,7 +90,7 @@ function gerarBebidas(){
         let footerzin = document.createElement('footer');
         let h4preco = document.createElement('h4');
 
-        h4preco.innerHTML = `<i class="fa-solid fa-dollar-sign"></i> ${bebida.valor}`
+        h4preco.innerHTML = `<i class="fa-solid fa-dollar-sign"></i> ${bebida.valor.toFixed(2)}`
 
         footerzin.appendChild(h4preco);
         footerzin.innerHTML = footerzin.innerHTML + '<i class="fa-solid fa-square-plus"></i>'
@@ -101,6 +103,7 @@ function gerarBebidas(){
 
         divLanches.appendChild(divBebida);
     }
+    gerarBotoes();
 }
 
 function gerarSobremesas(){
@@ -121,7 +124,7 @@ function gerarSobremesas(){
         let footerzin = document.createElement('footer');
         let h4preco = document.createElement('h4');
 
-        h4preco.innerHTML = `<i class="fa-solid fa-dollar-sign"></i> ${sobremesa.valor}`
+        h4preco.innerHTML = `<i class="fa-solid fa-dollar-sign"></i> ${sobremesa.valor.toFixed(2)}`
 
         footerzin.appendChild(h4preco);
         footerzin.innerHTML = footerzin.innerHTML + '<i class="fa-solid fa-square-plus"></i>'
@@ -134,6 +137,7 @@ function gerarSobremesas(){
 
         divLanches.appendChild(divSobremesa);
     }
+    gerarBotoes();
 }
 
 function gerarPromos(){
@@ -155,7 +159,7 @@ function gerarPromos(){
                 let footerzin = document.createElement('footer');
                 let h4preco = document.createElement('h4');
 
-                h4preco.innerHTML = `<i class="fa-solid fa-dollar-sign"></i> ${item.valor}`
+                h4preco.innerHTML = `<i class="fa-solid fa-dollar-sign"></i> ${item.valor.toFixed(2)}`
 
                 footerzin.appendChild(h4preco);
                 footerzin.innerHTML = footerzin.innerHTML + '<i class="fa-solid fa-square-plus"></i>'
@@ -170,10 +174,94 @@ function gerarPromos(){
             }
         }
     }
+    gerarBotoes();
 }
 
 function limpar(){
     divLanches.innerHTML = "";
 }
 
+const totalDoCarrinho = document.querySelector('.totalDoCarrinho');
+
+let TOTAL = 0;
+
+let arrPedidos = [];
+let arrBotoesRemover = [];
+
+function gerarBotoes(){
+    let botoes = Array.from(document.querySelectorAll('.fa-square-plus'));
+
+    botoes.forEach(botao => {
+        botao.addEventListener('click', (evt) => {
+            // Pega a imagem do lanche que foi clicado 
+            let imagemLancheClicado = botao.parentElement.parentElement.parentElement.firstChild.src;
+            let precoLancheClicado = Number.parseFloat(botao.parentElement.textContent);
+            let nomeLancheClicado = botao.parentElement.parentElement.textContent;
+            arrPedidos.push(nomeLancheClicado);
+            
+            let divItemCarrinho = document.createElement('div');
+            divItemCarrinho.classList.add('carrinhoItem');
+
+            let imagemItemCarrinho = document.createElement('img');
+            imagemItemCarrinho.src = imagemLancheClicado;
+            imagemItemCarrinho.alt = nomeLancheClicado;
+
+            let precoItemCarrinho = document.createElement('h4');
+            precoItemCarrinho.textContent =`$ ${precoLancheClicado.toFixed(2)}`;
+            TOTAL += precoLancheClicado;
+            totalDoCarrinho.textContent = `Total do carrinho: $ ${TOTAL.toFixed(2)}`
+
+            let footerItemCarrinho = document.createElement('footer');
+            footerItemCarrinho.classList.add('footerItemCarrinho');
+
+            footerItemCarrinho.appendChild(precoItemCarrinho);
+            footerItemCarrinho.innerHTML += ' <i class="fa-solid fa-circle-minus"></i>'
+            arrBotoesRemover.push(footerItemCarrinho.lastChild);
+
+            divItemCarrinho.appendChild(imagemItemCarrinho);
+            divItemCarrinho.appendChild(footerItemCarrinho);
+
+            divCarrinho.appendChild(divItemCarrinho);
+            ativarRemoverLanches();
+        });
+    });
+
+    
+}
+
+function handleDelete(evt){
+    let botao = arrBotoesRemover[evt.target.id];
+    let nomeLanche = botao.parentElement.parentElement.firstChild.alt;
+    let preco = Number.parseFloat(nomeLanche.slice(-5));
+    TOTAL -= preco;
+    totalDoCarrinho.textContent = `Total do carrinho: $ ${TOTAL.toFixed(2)}`
+    let index = arrPedidos.indexOf(nomeLanche);
+    console.log(index);
+    if (index > -1){
+        arrPedidos.splice(index, 1);
+    }
+    botao.parentElement.parentElement.remove();
+}
+
+function ativarRemoverLanches(){
+    
+    let idx = 0;
+    arrBotoesRemover.forEach(botao => {
+        botao.id = idx;
+        idx++;
+        botao.addEventListener('click', handleDelete);
+    });
+}
+
+function concluirPedido(){
+    if (arrPedidos.length > 0){
+        localStorage.setItem('pedidos', arrPedidos);
+        localStorage.setItem('total', TOTAL);
+        location.href = 'concluirPedido.html';
+    }
+}
+
 gerarPromos();
+
+
+document.querySelector('#concluirPedido').addEventListener('click', concluirPedido)
