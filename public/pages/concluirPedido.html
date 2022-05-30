@@ -7,8 +7,34 @@
     <title>Document</title>
     <script defer src="./../js/concluir.js"></script>
     <link rel="stylesheet" href="./../css/concluir.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-keyboard@latest/build/css/index.css">
+    <script src="https://kit.fontawesome.com/dab1386bf2.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    <section></section>
+    <section>
+        <h1>Seu pedido</h1>
+        <div class="pedidoInfo">
+            <ul class="pedidosLista"></ul>
+            <h3 class="precoTotal">Preço total: </h3>
+        </div>
+        <div class="pagamento">
+            <button class="pagButton">
+                <i class="fa-solid fa-credit-card"></i>
+                <br>
+                Cartão
+            </button>
+            <button class="pagButton">
+                <i class="fa-solid fa-money-bill"></i>
+                <br>
+                Dinheiro
+            </button>
+        </div>
+        <div class="inputNome">
+            <input class="input" type="text" name="nome" id="nome" placeholder="Digite seu Nome">
+        </div>
+        <button disabled id="finalizar">Finalizar Pedido</button>
+        <div class="simple-keyboard" id="invi"></div>
+    </section>
+    <script src="https://cdn.jsdelivr.net/npm/simple-keyboard@latest/build/index.js"></script>
 </body>
 </html>

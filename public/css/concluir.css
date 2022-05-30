@@ -1,0 +1,90 @@
+@import url("https://fonts.googleapis.com/css2?family=Maven+Pro:wght@400;500;600;700;800;900&display=swap");
+* {
+  font-family: "Maven Pro", sans-serif;
+  font-weight: 800;
+}
+
+body {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+section {
+  width: 80%;
+  height: 75%;
+  background-color: rgb(231, 231, 231);
+  display: flex;
+  gap: 30px;
+  border-radius: 16px;
+  padding: 20px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+section h1 {
+  font-size: 40px;
+}
+
+#finalizar {
+  background-color: green;
+  color: white;
+  font-size: 30px;
+  padding: 12px 8px;
+  border: none;
+  border-radius: 10px;
+}
+#finalizar:disabled {
+  opacity: 40%;
+}
+
+.pagamento {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+}
+.pagamento button {
+  text-align: center;
+  border-radius: 10px;
+  font-size: 30px;
+  border: none;
+  width: fit-content;
+  height: fit-content;
+  background-color: white;
+  padding: 40px;
+}
+.pagamento button i {
+  font-size: 100px;
+}
+
+#selected {
+  background-color: orange;
+}
+
+#nome {
+  font-size: 40px;
+}
+
+#invi {
+  margin-left: 100vh;
+}
+
+.simple-keyboard {
+  transition: margin-left 0.3s ease;
+}
+
+.pedidosLista {
+  list-style: disc;
+}
+.pedidosLista li {
+  font-size: 20px;
+}
+
+.precoTotal {
+  text-align: center;
+}
+
+/*# sourceMappingURL=concluir.css.map */
