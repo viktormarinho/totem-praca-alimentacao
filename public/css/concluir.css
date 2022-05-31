@@ -70,7 +70,15 @@ section h1 {
 
 .simple-keyboard {
   transition: margin-left 0.3s ease;
-  height: fit-content;
+}
+.simple-keyboard * {
+  min-height: 55px;
+  font-size: 26px;
+}
+.simple-keyboard .skbtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .pedidosLista {

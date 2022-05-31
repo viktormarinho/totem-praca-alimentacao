@@ -32,7 +32,7 @@ let keyboard = new Keyboard({
   },
   display: {
     "{numbers}": "123",
-    "{ent}": "return",
+    "{ent}": "concluir",
     "{escape}": "esc ⎋",
     "{tab}": "tab ⇥",
     "{backspace}": "⌫",
@@ -85,7 +85,7 @@ function handleNumbers() {
 
 function getPedidosFromLocalStorage() {
   let pedidos = localStorage.getItem('pedidos');
-  let total = localStorage.getItem('total');
+  let total = Number.parseFloat(localStorage.getItem('total'));
 
   let arrPedidos = pedidos.split(',')
   let listaPedidos = document.querySelector('.pedidosLista');
@@ -96,7 +96,7 @@ function getPedidosFromLocalStorage() {
     listaPedidos.appendChild(listaItem);
   })
 
-  document.querySelector('.precoTotal').textContent = "Preço Total: " + total;
+  document.querySelector('.precoTotal').textContent = "Preço Total: " + total.toFixed(2);
 }
 
 

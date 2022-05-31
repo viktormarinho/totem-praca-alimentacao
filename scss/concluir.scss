@@ -67,7 +67,15 @@ section{
 }
 .simple-keyboard{
     transition: margin-left .3s ease;
-    height: fit-content;
+    * {
+       min-height: 55px;
+       font-size: 26px;
+    }
+    .skbtn{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 }
 
 .pedidosLista{
