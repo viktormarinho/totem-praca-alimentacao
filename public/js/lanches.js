@@ -257,6 +257,7 @@ function concluirPedido(){
     if (arrPedidos.length > 0){
         localStorage.setItem('pedidos', arrPedidos);
         localStorage.setItem('total', TOTAL);
+        localStorage.setItem('restaurante', restauranteId);
         location.href = 'concluirPedido.html';
     }
 }

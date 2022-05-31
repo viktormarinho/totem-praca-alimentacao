@@ -1,4 +1,14 @@
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-app.js";
+import { getDatabase, ref, push } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-database.js";
+import { firebaseConfig } from "./config.js";
+
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+
 let Keyboard = window.SimpleKeyboard.default;
+
+const restauranteNome = localStorage.getItem('restaurante');
+const dbRef = ref(db, `${restauranteNome}`);
 
 let keyboard = new Keyboard({
   onChange: input => onChange(input),
@@ -45,9 +55,6 @@ document.querySelector(".input").addEventListener("input", event => {
   keyboard.setInput(event.target.value);
 });
 
-function onChange(input) {
-  document.querySelector(".input").value = input;
-}
 
 function onKeyPress(button) {
 
@@ -76,62 +83,83 @@ function handleNumbers() {
   });
 }
 
-function getPedidosFromLocalStorage(){
-    let pedidos = localStorage.getItem('pedidos');
-    let total = localStorage.getItem('total');
+function getPedidosFromLocalStorage() {
+  let pedidos = localStorage.getItem('pedidos');
+  let total = localStorage.getItem('total');
 
-    let arrPedidos = pedidos.split(',')
-    let listaPedidos = document.querySelector('.pedidosLista');
-    
-    arrPedidos.forEach((pedido) => {
-        let listaItem = document.createElement('li');
-        listaItem.textContent = pedido;
-        listaPedidos.appendChild(listaItem);
-    })
+  let arrPedidos = pedidos.split(',')
+  let listaPedidos = document.querySelector('.pedidosLista');
 
-    document.querySelector('.precoTotal').textContent = "Preço Total: "+total;
+  arrPedidos.forEach((pedido) => {
+    let listaItem = document.createElement('li');
+    listaItem.textContent = pedido;
+    listaPedidos.appendChild(listaItem);
+  })
+
+  document.querySelector('.precoTotal').textContent = "Preço Total: " + total;
 }
 
 
 document.querySelector('#nome').addEventListener('click', () => {
-    document.querySelector('.simple-keyboard').id = "teclado";
+  document.querySelector('.simple-keyboard').id = "teclado";
 });
 
 document.querySelector('body').addEventListener('click', (e) => {
-    let teclado = document.querySelector('.simple-keyboard');
-    console.log(e.target.parentElement.parentElement.parentElement);
-    if (e.target != teclado &&
-         e.target.parentElement != teclado &&
-         e.target.parentElement.parentElement != teclado &&
-         e.target.parentElement.parentElement.parentElement != teclado){
-        teclado.id = "invi";
-    }
+  let teclado = document.querySelector('.simple-keyboard');
+  if (e.target != teclado &&
+    e.target.parentElement != teclado &&
+    e.target.parentElement.parentElement != teclado &&
+    e.target.parentElement.parentElement.parentElement != teclado) {
+    teclado.id = "invi";
+  }
 }, true);
 
 let pagButtons = Array.from(document.querySelectorAll('.pagButton'));
+let selecionouAlgum = false;
+let botaoFinalizar = document.querySelector("#finalizar");
 
 pagButtons.forEach((button) => {
-    button.addEventListener('click', (e) => {
-        pagButtons.forEach(btn => btn.style.backgroundColor = "");
-        button.style.backgroundColor = "orange";
-        if (document.querySelector('#nome').value != ""){
-            document.querySelector("#finalizar").disabled = false;
-        }
-    })
+  button.addEventListener('click', (e) => {
+    pagButtons.forEach(btn => btn.style.backgroundColor = "");
+    button.style.backgroundColor = "orange";
+    selecionouAlgum = true;
+    if (document.querySelector('#nome').value != "") {
+      botaoFinalizar.disabled = false;
+    }
+  })
 });
 
-document.querySelector("#nome").addEventListener('change', (e) =>{
-  let selecionouAlgum = false;
+let inputField = document.querySelector('#nome');
+
+function onChange(input) {
+  document.querySelector(".input").value = input;
+  if (selecionouAlgum && inputField.value !== "") {
+    botaoFinalizar.disabled = false;
+  } else {
+    botaoFinalizar.disabled = true;
+  }
+}
+
+botaoFinalizar.addEventListener('click', () => {
+  let nomeUsuario = inputField.value;
+  let tipoPagamento = "";
+  let pedidos = localStorage.getItem('pedidos').split(',');
+  let total = localStorage.getItem('total');
   pagButtons.forEach(btn => {
     if (btn.style.backgroundColor == "orange"){
-      selecionouAlgum = true;
+      tipoPagamento = btn.textContent;
     }
   });
-  if(selecionouAlgum){
-    document.querySelector("#finalizar").disabled = false;
-  }else{
-    document.querySelector("#finalizar").disabled = true;
+
+  const pedido = {
+    nome: nomeUsuario,
+    pagamento: tipoPagamento,
+    pedido: pedidos,
+    total: total
   }
+
+  push(dbRef, pedido);
 });
+
 
 getPedidosFromLocalStorage();

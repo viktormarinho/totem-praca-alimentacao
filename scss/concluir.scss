@@ -63,10 +63,11 @@ section{
     font-size: 40px;
 }
 #invi{
-    margin-left: 100vh;
+    margin-left: 250vw;
 }
 .simple-keyboard{
     transition: margin-left .3s ease;
+    height: fit-content;
 }
 
 .pedidosLista{
