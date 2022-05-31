@@ -159,6 +159,14 @@ botaoFinalizar.addEventListener('click', () => {
   }
 
   push(dbRef, pedido);
+
+  let sec = document.querySelector('section');
+  sec.innerHTML = '<i style="font-size: 70px; color: green" class="fa-solid fa-circle-check"></i><h1>Pedido enviado com sucesso.</h1>';
+  sec.style.justifyContent = 'center';
+
+  setTimeout(() => {
+    window.history.go(-2);
+  }, 3000);
 });
 
 
