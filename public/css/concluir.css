@@ -83,6 +83,8 @@ section h1 {
 
 .pedidosLista {
   list-style: disc;
+  max-height: 350px;
+  overflow-y: scroll;
 }
 .pedidosLista li {
   font-size: 20px;
