@@ -80,6 +80,8 @@ section{
 
 .pedidosLista{
     list-style: disc;
+    max-height: 350px;
+    overflow-y: scroll;
     li{
         font-size: 20px;
     }
