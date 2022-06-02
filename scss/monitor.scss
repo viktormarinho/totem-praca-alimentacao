@@ -1,0 +1,97 @@
+@import url('https://fonts.googleapis.com/css2?family=Maven+Pro:wght@400;500;600;700;800;900&display=swap');
+$font-stack: 'Maven Pro', sans-serif;
+
+* {
+    font-family: $font-stack;
+    font-weight: 800;
+    margin: 0; padding: 0;
+}
+
+header{
+    background-color: rgb(219, 219, 219);
+    padding: 30px;
+}
+
+section{
+    display: flex;
+    height: 90vh;
+
+    .pedidos{
+        width: 75vw;
+        background-color: whitesmoke;
+        overflow-y: scroll;
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+
+        .pedido{
+            
+            background-color: rgb(228, 227, 227);
+
+            .pedido-click{
+                display: flex;
+                justify-content: space-between;
+                padding: 40px;
+                font-size: 32px;
+                align-items: center;
+                cursor: pointer;
+                position: relative;
+            }
+
+            .horario{
+                font-size: 22px;
+                font-weight: 600;
+            }
+
+            .pedido-content{
+                transition-duration: .3s;
+                overflow: hidden;
+            }
+            .pedido-content-off{
+                height: 0;
+            }
+            .pedido-content-on{
+                height: fit-content;
+                display: flex;
+                padding: 40px;
+                align-items: center;
+                justify-content: space-between;
+                font-size: 20px;
+
+                .lista-itens{
+                    overflow-y: scroll;
+                    max-height: 250px;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 4px;
+                }
+            }
+        }
+    }
+    .sidepanel{
+        width: 25vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 25px;
+        flex-direction: column;
+        text-align: center;
+        gap: 40px;
+
+        input{
+            font-size: 20px;
+        }
+        button{
+            font-size: 25px;
+            background-color: green;
+            border: none;
+            border-radius: 8px;
+            padding: 12px 8px;
+            color: white;
+            &:disabled{
+                opacity: 40%;
+            }
+        }
+    }
+
+}

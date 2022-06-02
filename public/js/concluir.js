@@ -155,7 +155,8 @@ botaoFinalizar.addEventListener('click', () => {
     nome: nomeUsuario,
     pagamento: tipoPagamento,
     pedido: pedidos,
-    total: total
+    total: total,
+    horario: new Date().toLocaleTimeString()
   }
 
   push(dbRef, pedido);
