@@ -1,15 +1,39 @@
 import { firebaseConfig } from "./config.js";
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-app.js";
 import { getDatabase, onValue, ref } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-database.js";
+import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-firestore.js";
+
 
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
+const firestore = getFirestore(app);
+const RestaurantesQuerySnapshot = await getDocs(collection(firestore, "restaurantes"));
+
+RestaurantesQuerySnapshot.forEach(doc => {
+    let selectzim = document.getElementById('nomeRes');
+    let opcaoRestaurante = document.createElement('option');
+    opcaoRestaurante.value = doc.id;
+    opcaoRestaurante.innerText = doc.id;
+
+    selectzim.appendChild(opcaoRestaurante);
+});
 
 let used = []
 
+
+
 document.getElementById('iniciar').addEventListener('click', e => {
-    applicationLoop(document.getElementById('nomeRes').value)
-    e.target.disabled = true;
+    if(document.getElementById('senha').value == '123'){
+        applicationLoop(document.getElementById('nomeRes').value);
+        document.getElementById('senha').style.backgroundColor = 'white';
+        document.getElementById('senha').style.border = '2px solid black';
+        document.getElementById('senha').style.borderRadius = '4px';
+        e.target.disabled = true;   
+    }else{
+        document.getElementById('senha').style.backgroundColor = 'rgb(255, 0, 0, .2)';
+        document.getElementById('senha').style.border = '2px solid red';
+        document.getElementById('senha').style.borderRadius = '4px';
+    }
 });
 
 

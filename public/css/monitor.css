@@ -71,8 +71,13 @@ section .sidepanel {
   text-align: center;
   gap: 40px;
 }
-section .sidepanel input {
+section .sidepanel label p {
+  font-size: 18px;
+  padding: 4px;
+}
+section .sidepanel select, section .sidepanel input {
   font-size: 20px;
+  width: 200px;
 }
 section .sidepanel button {
   font-size: 25px;

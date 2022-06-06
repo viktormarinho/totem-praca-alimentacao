@@ -78,8 +78,13 @@ section{
         text-align: center;
         gap: 40px;
 
-        input{
+        label p{
+            font-size: 18px;
+            padding: 4px;
+        }
+        select, input{
             font-size: 20px;
+            width: 200px;
         }
         button{
             font-size: 25px;
