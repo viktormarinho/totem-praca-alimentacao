@@ -55,14 +55,21 @@ document.querySelector(".input").addEventListener("input", event => {
   keyboard.setInput(event.target.value);
 });
 
+let selecionouAlgum = false;
 
 function onKeyPress(button) {
-
+  
   /**
    * If you want to handle the shift and caps lock buttons
    */
+
   if (button === "{shift}" || button === "{lock}") handleShift();
   if (button === "{numbers}" || button === "{abc}") handleNumbers();
+  if (button === "{ent}"){
+    if(selecionouAlgum){
+      document.querySelector('#finalizar').dispatchEvent(new Event('click'));
+    }
+  } 
 }
 
 function handleShift() {
@@ -115,7 +122,6 @@ document.querySelector('body').addEventListener('click', (e) => {
 }, true);
 
 let pagButtons = Array.from(document.querySelectorAll('.pagButton'));
-let selecionouAlgum = false;
 let botaoFinalizar = document.querySelector("#finalizar");
 
 pagButtons.forEach((button) => {
