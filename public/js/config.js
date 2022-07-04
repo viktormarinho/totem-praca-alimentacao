@@ -1,5 +1,5 @@
 export const firebaseConfig = {
-    apiKey: "AIzaSyCZLitaL8XSoT4AER8luUd-MMqV8dVaCEY",
+    apiKey: "API KEY REMOVIDA POR SEGURANÇA DO REPOSITÓRIO PÚBLICO... trabalho já finalizado",
     authDomain: "hare-somativa.firebaseapp.com",
     projectId: "hare-somativa",
     storageBucket: "hare-somativa.appspot.com",
